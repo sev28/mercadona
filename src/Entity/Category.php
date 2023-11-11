@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
@@ -15,6 +17,20 @@ class Category
 
     #[ORM\Column(length: 255)]
     private ?string $Wording = null;
+
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Products::class)]
+    private Collection $products;
+
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Catalogue::class)]
+    private Collection $catalogues;
+
+    
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+        $this->catalogues = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -32,4 +48,66 @@ class Category
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Products>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Products $product): static
+    {
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Products $product): static
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getCategory() === $this) {
+                $product->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Catalogue>
+     */
+    public function getCatalogues(): Collection
+    {
+        return $this->catalogues;
+    }
+
+    public function addCatalogue(Catalogue $catalogue): static
+    {
+        if (!$this->catalogues->contains($catalogue)) {
+            $this->catalogues->add($catalogue);
+            $catalogue->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCatalogue(Catalogue $catalogue): static
+    {
+        if ($this->catalogues->removeElement($catalogue)) {
+            // set the owning side to null (unless already changed)
+            if ($catalogue->getCategory() === $this) {
+                $catalogue->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }
