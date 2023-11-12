@@ -22,8 +22,8 @@ class Products
     #[ORM\Column]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?int $price = null;
+    #[ORM\Column]
+    private ?float $price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -42,10 +42,6 @@ class Products
     #[ORM\JoinColumn(nullable: true)]
     private ?Promotion $promotion = null;
 
-    
-
-    
-
     public function getId(): ?int
     {
         return $this->id;
@@ -63,12 +59,12 @@ class Products
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): static
+    public function setPrice(float $price): static
     {
         $this->price = $price;
 

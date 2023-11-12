@@ -4,12 +4,31 @@
 
 {% block body %}
     <h1>Catalogue de Produits</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                {% include 'products/filter.html.twig' with {form: form} only %}
+            </div>
+            <div class="col-md-9">
+                <div class="grid">
+                    {% for product in products %}
+                        {% include 'products/card.html.twig' with {product: product} only %}
+                    {% endfor %}
+                </div>
+                <div class="mt-4">
+                    {{ knp_pagination_render(products)}}
+                 </div>
+            </div>
+        </div>
+        
+             
+    </div>
 
-    <table class="table">
+    {# <table class="table">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Price</th>
+                <th>Titre</th>
+                <th>Prix</th>
                 <th>Description</th>
                 <th>Image</th>
                 <th>Categorie</th>
@@ -31,7 +50,14 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> #}
+    {# <div class="container">
+             <div class="grid">
+                {% for product in products %}
+                    {% include 'products/card.html.twig' with {product: products} only %}
+                {% endfor % }
+             </div>
+         </div> #}
 
     
 {% endblock %}

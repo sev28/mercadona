@@ -2,9 +2,12 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Products>
@@ -16,14 +19,42 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProductsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Products::class);
+        $this->paginator = $paginator;
     }
 
+
 //    /**
-//     * @return Products[] Returns an array of Products objects
+//     * @return PaginationInterface 
 //     */
+    public function findSearch(SearchData $search): PaginationInterface
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('c', 'p')
+            ->join('p.category', 'c');
+
+        if (!empty($search->q)) {
+            $query = $query
+                ->andWhere('p.title LIKE :q')
+                ->setParameter('q', "%{$search->q}%");
+        }
+        if(!empty($search->categories)){
+            $query = $query
+                ->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $search->categories);
+        }
+
+        $query =  $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            1,
+            6
+        );
+    }
+
 //    public function findByExampleField($value): array
 //    {
 //        return $this->createQueryBuilder('p')
