@@ -3,6 +3,7 @@ namespace App\Form;
 
 use App\Data\SearchData;
 use App\Entity\Category;
+use App\Entity\Promotion;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -30,10 +31,10 @@ class SearchForm extends AbstractType
                 'expanded' => true,
                 'multiple' => true
             ])
-            ->add('promo', CheckboxType::class, [
-                'label' => 'En promotion',
-                'required' => false,
-            ])
+            // ->add('promotion', CheckboxType::class, [
+            //     'label' => 'En promotion',
+            //     'required' => false,
+            // ])
         ;
     }
     public function configureOptions(OptionsResolver $resolver)
@@ -41,7 +42,7 @@ class SearchForm extends AbstractType
         $resolver->setDefaults([
             'datad_class' => SearchData::class,
             'method' => 'GET',
-            'csrf_pretection' => false
+            'csrf_protection' => false
         ]);
     }
 

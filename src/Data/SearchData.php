@@ -19,5 +19,5 @@ class SearchData
     /**
      * @var boolean
      */
-    public $promo = false;
+    public $promotion = false;
 }
