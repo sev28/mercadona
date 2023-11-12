@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PromotionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,9 +25,20 @@ class Promotion
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_date = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Products $product = null;
+    #[ORM\OneToMany(mappedBy: 'promotion', targetEntity: Products::class)]
+    private Collection $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
+    
+    public function __toString()
+    {
+        return $this->getPourcent();
+    }
+
 
     public function getId(): ?int
     {
@@ -68,15 +81,36 @@ class Promotion
         return $this;
     }
 
-    public function getProduct(): ?Products
+    /**
+     * @return Collection<int, Products>
+     */
+    public function getProducts(): Collection
     {
-        return $this->product;
+        return $this->products;
     }
 
-    public function setProduct(Products $product): static
+    public function addProduct(Products $product): static
     {
-        $this->product = $product;
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setPromotion($this);
+        }
 
         return $this;
     }
+
+    public function removeProduct(Products $product): static
+    {
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getPromotion() === $this) {
+                $product->setPromotion(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
+   
 }

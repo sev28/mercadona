@@ -34,12 +34,15 @@ class Products
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
-    
-    
-
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
+
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Promotion $promotion = null;
+
+    
 
     
 
@@ -120,12 +123,18 @@ class Products
        
     }
 
-    
+    public function getPromotion(): ?Promotion
+    {
+        return $this->promotion;
+    }
 
- 
+    public function setPromotion(?Promotion $promotion): static
+    {
+        $this->promotion = $promotion;
+
+        return $this;
+    }
+
    
-
-   
-
     
 }
