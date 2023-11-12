@@ -19,11 +19,11 @@ class Products
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $price = null;
+    private ?int $price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $title = null;
@@ -63,12 +63,12 @@ class Products
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    public function setPrice(string $price): static
+    public function setPrice(int $price): static
     {
         $this->price = $price;
 

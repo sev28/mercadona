@@ -29,7 +29,7 @@ class ProductsCrudController extends AbstractCrudController
             yield TextareaField::new('description'); 
             yield NumberField::new('price');
             yield AssociationField::new('category');
-            yield TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating();
+            yield TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex();
             yield ImageField::new('image')->setBasePath('/uploads/images')->onlyOnIndex();
             yield AssociationField::new('promotion');
           
