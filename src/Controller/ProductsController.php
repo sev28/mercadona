@@ -20,6 +20,7 @@ class ProductsController extends AbstractController
     public function index(ProductsRepository $productsRepository, Request $request): Response
     {
         $data = new SearchData();
+        $data->page = $request->get('page', 1);
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
         return $this->render('products/index.html.twig', [
