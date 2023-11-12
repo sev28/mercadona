@@ -5,8 +5,12 @@ namespace App\Entity;
 use App\Repository\ProductsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
 class Products
 {
@@ -22,21 +26,22 @@ class Products
     private ?string $price = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $title = null;
+    
+    #[ORM\Column(type:'string', length: 255)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
+
+    
+    
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'products', targetEntity: Catalogue::class)]
-    private Collection $catalogues;
-
-    public function __construct()
-    {
-        $this->catalogues = new ArrayCollection();
-    }
-
-   
+    
 
     public function getId(): ?int
     {
@@ -67,18 +72,6 @@ class Products
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): static
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -91,35 +84,48 @@ class Products
         return $this;
     }
 
-    /**
-     * @return Collection<int, Catalogue>
-     */
-    public function getCatalogues(): Collection
+
+    public function getTitle(): ?string
     {
-        return $this->catalogues;
+        return $this->title;
     }
 
-    public function addCatalogue(Catalogue $catalogue): static
+    public function setTitle(string $title): static
     {
-        if (!$this->catalogues->contains($catalogue)) {
-            $this->catalogues->add($catalogue);
-            $catalogue->setProducts($this);
-        }
+        $this->title = $title;
 
         return $this;
     }
 
-    public function removeCatalogue(Catalogue $catalogue): static
+    public function getImage(): ?string
     {
-        if ($this->catalogues->removeElement($catalogue)) {
-            // set the owning side to null (unless already changed)
-            if ($catalogue->getProducts() === $this) {
-                $catalogue->setProducts(null);
-            }
-        }
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile):void
+    {
+        $this->imageFile = $imageFile;
+
+       
+    }
+
+    
+
+ 
+   
+
+   
 
     
 }

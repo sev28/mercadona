@@ -21,15 +21,15 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Products::class)]
     private Collection $products;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Catalogue::class)]
-    private Collection $catalogues;
-
     
 
     public function __construct()
     {
         $this->products = new ArrayCollection();
-        $this->catalogues = new ArrayCollection();
+    }
+    public function __toString()
+    {
+        return $this->getWording();
     }
 
     public function getId(): ?int
@@ -79,35 +79,5 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection<int, Catalogue>
-     */
-    public function getCatalogues(): Collection
-    {
-        return $this->catalogues;
-    }
-
-    public function addCatalogue(Catalogue $catalogue): static
-    {
-        if (!$this->catalogues->contains($catalogue)) {
-            $this->catalogues->add($catalogue);
-            $catalogue->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCatalogue(Catalogue $catalogue): static
-    {
-        if ($this->catalogues->removeElement($catalogue)) {
-            // set the owning side to null (unless already changed)
-            if ($catalogue->getCategory() === $this) {
-                $catalogue->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
-
-   
+    
 }
