@@ -110,7 +110,4 @@ class Promotion
 
         return $this;
     }
-
-    
-   
 }

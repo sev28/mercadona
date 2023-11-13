@@ -31,14 +31,6 @@ class ProductsCrudController extends AbstractCrudController
             yield AssociationField::new('category');
             yield TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex();
             yield ImageField::new('image')->setBasePath('/uploads/images')->onlyOnIndex();
-            yield AssociationField::new('promotion');
-          
-           
-          
-          
-           
-
-        
-    }
-    
+            yield AssociationField::new('promotion');   
+    }  
 }
