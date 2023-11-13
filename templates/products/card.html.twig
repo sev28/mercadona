@@ -1,11 +1,13 @@
 <div class="card">
-    <img src={{ product.image }} alt="test" class="card-img-top">
+    <img src="../uploads/images/{{product.image}}" alt="test" class="card-img-top" style="width: 305px; height: 250px;">
     <div class="card-body">
         <h5 class="card-title text-primary" >{{product.title}}</h5>
-        <div class="card-title" style="font-weight: bold; font-size: 1.2rem;">
-            {{product.price | number_format(0, ',', ' ')}}€/kg
+        <div class="card-title" style="font-weight: bold;">
             {% if product.promotion %}
                 <div class="text text-warning">Promotion !</div>
+                <div style="color:red;font-weight: bold; font-size: 1.2rem, ;">{{ product.price | number_format(0, ',', ' ')}}€/kg</div>
+                {% else %}
+                <div style="font-weight: bold; font-size: 1.2rem, ;">{{ product.price | number_format(0, ',', ' ')}}€/kg</div>
             {% endif %}
         </div>
         <p class="text text-muted">{{ product.description }}</p>
