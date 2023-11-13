@@ -23,8 +23,6 @@ class ProductsCrudController extends AbstractCrudController
     
     public function configureFields(string $pageName): iterable
     {
-       
-        
             yield TextField::new('title');
             yield TextareaField::new('description'); 
             yield NumberField::new('price');

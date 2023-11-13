@@ -16,8 +16,8 @@ class Promotion
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $pourcent = null;
+    #[ORM\Column]
+    private ?int $pourcent = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $begin_date = null;
@@ -45,7 +45,7 @@ class Promotion
         return $this->id;
     }
 
-    public function getPourcent(): ?string
+    public function getPourcent(): ?int
     {
         return $this->pourcent;
     }

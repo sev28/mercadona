@@ -5,7 +5,7 @@
         <div class="card-title" style="font-weight: bold;">
             {% if product.promotion %}
                 <div class="text text-warning">Promotion !</div>
-                <div style="color:red;font-weight: bold; font-size: 1.2rem, ;">{{ product.price | number_format(0, ',', ' ')}}€/kg</div>
+                <div style="color:red;font-weight: bold; font-size: 1.2rem;">{{ (product.price - ((product.price * product.promotion.pourcent)/100)) | number_format(2, ',', ' ')}}€/kg</div>
                 {% else %}
                 <div style="font-weight: bold; font-size: 1.2rem, ;">{{ product.price | number_format(0, ',', ' ')}}€/kg</div>
             {% endif %}
