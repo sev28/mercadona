@@ -11,12 +11,12 @@
             </div>
             <div class="col-md-9">
                 <div class="grid">
-                    {% for product in products %}
+                    {% for product in pagination %}
                         {% include 'products/card.html.twig' with {product: product} only %}
                     {% endfor %}
                 </div>
                 <div class="mt-4">
-                    {{ knp_pagination_render(products)}}
+                    {{ knp_pagination_render(pagination)}}
                  </div>
             </div>
         </div>

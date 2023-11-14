@@ -8,6 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\BrowserKit\Request;
 
 /**
  * @extends ServiceEntityRepository<Products>
@@ -19,17 +20,17 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class ProductsRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Products::class);
-        $this->paginator = $paginator;
+        
     }
 
 
 //    /**
 //     * @return PaginationInterface 
 //     */
-    public function findSearch(SearchData $search): PaginationInterface
+    public function findSearch(SearchData $search)
     {
         $query = $this
             ->createQueryBuilder('p')
@@ -47,11 +48,12 @@ class ProductsRepository extends ServiceEntityRepository
                 ->setParameter('categories', $search->categories);
         }
 
-        $query =  $query->getQuery();
-        return $this->paginator->paginate(
-            $query,
-            $search->page,
-            6
-        );
+        
+    }
+    public function paginationQuery()
+    {
+        return $this->createQueryBuilder('a')
+        ->orderBy('a.id', 'ASC')
+        ->getQuery();
     }
 }

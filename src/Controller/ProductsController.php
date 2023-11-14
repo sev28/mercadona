@@ -8,6 +8,7 @@ use App\Form\ProductsType;
 use App\Form\SearchForm;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,15 +18,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'app_products_index', methods: ['GET'])]
-    public function index(ProductsRepository $productsRepository, Request $request): Response
+    public function index(ProductsRepository $productsRepository, Request $request, PaginatorInterface $paginator): Response
     {
         $data = new SearchData();
-        $data->page = $request->get('page', 1);
+        $pagination = $paginator->paginate(
+            $productsRepository->paginationQuery(),
+            $request->query->get('page', 1),
+            6
+        );
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
         return $this->render('products/index.html.twig', [
             'products' => $productsRepository->findSearch($data),
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'pagination' => $pagination
         ]);
     }
 
