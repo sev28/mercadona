@@ -28,11 +28,21 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+   /**
+    * The function `getId()` returns the value of the `id` property, which is an integer or null.
+    * 
+    * @return ?int the value of the property "id" as an integer or null.
+    */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+   /**
+    * The above code defines a PHP class method that gets and sets the email property of an object.
+    * 
+    * @return ?string The getEmail() function is returning a nullable string.
+    */
     public function getEmail(): ?string
     {
         return $this->email;

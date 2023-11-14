@@ -42,6 +42,17 @@ class Products
     #[ORM\JoinColumn(nullable: true)]
     private ?Promotion $promotion = null;
 
+    /**
+     * The above code defines a PHP class with various getter and setter methods for properties such as
+     * id, description, price, category, title, image, imageFile, and promotion.
+     * 
+     * @return ?int The `getId()` method returns an optional integer value (`?int`).
+     * The `getDescription()` method returns an optional string value (`?string`).
+     * The `getPrice()` method returns an optional float value (`?float`).
+     * The `getCategory()` method returns an optional `Category` object (`?Category`).
+     * The `getTitle()` method returns an optional string value (`?string`).
+     * The
+     */
     public function getId(): ?int
     {
         return $this->id;

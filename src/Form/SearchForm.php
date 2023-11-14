@@ -14,7 +14,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SearchForm extends AbstractType
 {
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+   /**
+    * The function builds a form with a text input field and a checkbox list for selecting categories.
+    * 
+    * @param FormBuilderInterface builder The `` parameter is an instance of the
+    * `FormBuilderInterface` class. It is used to build the form by adding form fields and configuring
+    * their options.
+    * @param array options The `` parameter is an array that contains additional options for
+    * configuring the form. These options can be used to customize the behavior and appearance of the
+    * form.
+    */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('q', TextType::class, [
@@ -33,7 +43,7 @@ class SearchForm extends AbstractType
             ])
         ;
     }
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'datad_class' => SearchData::class,
@@ -42,7 +52,7 @@ class SearchForm extends AbstractType
         ]);
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return '';
     }
