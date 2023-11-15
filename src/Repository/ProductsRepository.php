@@ -25,8 +25,6 @@ class ProductsRepository extends ServiceEntityRepository
         parent::__construct($registry, Products::class);
         
     }
-
-
 //    /**
 //     * @return PaginationInterface 
 //     */
@@ -47,9 +45,9 @@ class ProductsRepository extends ServiceEntityRepository
                 ->andWhere('c.id IN (:categories)')
                 ->setParameter('categories', $search->categories);
         }
-
-        
+        return $query->getQuery()->getResult();
     }
+
     public function paginationQuery()
     {
         return $this->createQueryBuilder('a')

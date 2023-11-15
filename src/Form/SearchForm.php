@@ -24,6 +24,16 @@ class SearchForm extends AbstractType
     * configuring the form. These options can be used to customize the behavior and appearance of the
     * form.
     */
+   /**
+    * The function builds a form with a text input field and a checkbox list for selecting categories.
+    * 
+    * @param FormBuilderInterface builder The `` parameter is an instance of the
+    * `FormBuilderInterface` class. It is used to build the form by adding form fields and configuring
+    * their options.
+    * @param array options The `` parameter is an array that contains additional options for
+    * configuring the form. These options can be used to customize the behavior and appearance of the
+    * form.
+    */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -43,7 +53,13 @@ class SearchForm extends AbstractType
             ])
         ;
     }
-    public function configureOptions(OptionsResolver $resolver): void
+    /**
+     * The function `configureOptions` sets default options for a resolver object in PHP.
+     * 
+     * @param OptionsResolver resolver The `` parameter is an instance of the
+     * `OptionsResolver` class. It is used to configure and validate options for a class or method.
+     */
+    public function configureOptions(OptionsResolver $resolver) :void
     {
         $resolver->setDefaults([
             'datad_class' => SearchData::class,

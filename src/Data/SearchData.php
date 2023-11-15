@@ -3,10 +3,10 @@ namespace App\Data;
 
 class SearchData 
 {
-    /**
-     * @var int
-     */
-    public $page = 1;
+    // /**
+    //  * @var int
+    //  */
+    // public $page = 1;
     /**
      * @var string
      */
@@ -16,8 +16,5 @@ class SearchData
      */
     public $categories = [];
 
-    /**
-     * @var boolean
-     */
-    public $promotion = false;
+
 }
