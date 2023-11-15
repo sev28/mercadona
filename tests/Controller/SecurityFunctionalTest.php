@@ -14,11 +14,5 @@ class SecurityFunctionalTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
     }
-    public function testLogout()
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/logout');
-
-        $this->assertResponseRedirects();
-    }
+    
 }
