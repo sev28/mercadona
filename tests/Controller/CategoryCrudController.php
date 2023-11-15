@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CategoryCrudController extends WebTestCase
 {
-    public function testSomething()
+    public function testCategroryCrud()
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');

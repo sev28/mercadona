@@ -4,15 +4,13 @@ namespace App\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class HomeFunctionalTest extends WebTestCase
+class ProductFunctionalTest extends WebTestCase
 {
-    public function testHomePage(): void
+    public function testShoulDisplayApropos(): void
     {
-       
         $client = static::createClient();
-        $crawler = $client->request('GET', '/catalogue');
+        $crawler = $client->request('GET', '/products/');
 
         $this->assertResponseIsSuccessful();
     }
 }
-
