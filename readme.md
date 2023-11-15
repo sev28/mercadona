@@ -11,7 +11,7 @@ Mercadona est un projet crée pour un bachelor developpement web et mobile
 * Docker
 * Docker-compose
 
-Vous pouvez vérifier les pré-requis (sauf Docker et Docker-compose) avec la commabnde suivante : 
+Vous pouvez vérifier les pré-requis (sauf Docker et Docker-compose) avec la commande suivante : 
 ```bash
 symfony check:requirements
 ```
