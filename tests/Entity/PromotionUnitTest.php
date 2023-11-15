@@ -51,6 +51,21 @@ class PromotionUnitTest extends TestCase
         $this->assertEmpty($promotion->getBeginDate());
         $this->assertEmpty($promotion->getEndDate());
         $this->assertEmpty($promotion->getProducts());
+        $this->assertEmpty($promotion->getId());
+        
+    }
+    public function testAddRemoveProduct(){
+        $promotion = new Promotion();
+        $product = new Products();
+
+        $this->assertEmpty($promotion->getProducts());
+
+        $promotion->addProduct($product);
+        $this->assertContains($product, $promotion->getProducts());
+
+        $promotion->removeProduct($product);
+        $this->assertEmpty($promotion->getProducts());
+
     }
 }   
 

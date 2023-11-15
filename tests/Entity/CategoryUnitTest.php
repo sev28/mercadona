@@ -39,5 +39,19 @@ class CategoryUnitTest extends TestCase
 
         $this->assertEmpty($category->getWording());
         $this->assertEmpty($category->getProducts());
+        $this->assertEmpty($category->getId());
+    }
+    public function testAddRemoveProduct(){
+        $category = new Category();
+        $product = new Products();
+
+        $this->assertEmpty($category->getProducts());
+
+        $category->addProduct($product);
+        $this->assertContains($product, $category->getProducts());
+
+        $category->removeProduct($product);
+        $this->assertEmpty($category->getProducts());
+
     }
 }

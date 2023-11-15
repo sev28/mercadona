@@ -58,6 +58,7 @@ class ProductsUnitTest extends TestCase
         $this->assertEmpty($products->getCategory());
         $this->assertEmpty($products->getPromotion());
         $this->assertEmpty($products->getPrice());
+        $this->assertEmpty($products->getId());
 
     }
 }   
