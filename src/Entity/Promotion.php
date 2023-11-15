@@ -47,7 +47,6 @@ class Promotion
     {
         return $this->getPourcent();
     }
-
    /**
     * The function `getId()` returns the value of the `id` property, which is an integer or null.
     * 
