@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ProductsRepository::class)]
@@ -20,12 +21,16 @@ class Products
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
+    #[Assert\Positive]
     private ?float $price = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull]
     private ?string $title = null;
     
     #[ORM\Column(type:'string', length: 255)]

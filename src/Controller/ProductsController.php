@@ -23,14 +23,14 @@ class ProductsController extends AbstractController
         $data = new SearchData();
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
-        $products = $repository->findSearch($data);
+        $data = $repository->findSearch($data);
         $pagination = $paginator->paginate(
             $productsRepository->paginationQuery(),
             $request->query->get('page', 1),
             6
         );
         return $this->render('products/index.html.twig', [
-            'products' => $products,
+            'products' => $productsRepository->findAll(),
             'form' => $form->createView(),
             'pagination' => $pagination
         ]);
