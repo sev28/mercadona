@@ -48,10 +48,10 @@ class ProductsRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function paginationQuery()
-    {
-        return $this->createQueryBuilder('a')
-        ->orderBy('a.id', 'ASC')
-        ->getQuery();
-    }
+    // public function paginationQuery()
+    // {
+    //     return $this->createQueryBuilder('a')
+    //     ->orderBy('a.id', 'ASC')
+    //     ->getQuery();
+    // }
 }
