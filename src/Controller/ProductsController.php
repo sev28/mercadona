@@ -19,11 +19,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'app_products_index', methods: ['GET'])]
-    public function index(ProductsRepository $repository, Request $request, PaginatorInterface $paginator, ProductsRepository $productsRepository)
+    public function index(ProductsRepository $repository, Request $request, PaginatorInterface $paginator, ProductsRepository $productsRepository): Response
     {
         $data = new SearchData();
         $form = $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+        }
         $data = $repository->findSearch($data);
         $pagination = $paginator->paginate(
             $repository->findAll(),
