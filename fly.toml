@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for mercadona-project-bitter-butterfly-5213-proud-dream-5888 on 2023-11-30T20:46:03+01:00
+# fly.toml app configuration file generated for mercadona-project-test on 2023-11-30T22:19:14+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "mercadona-project-bitter-butterfly-5213-proud-dream-5888"
+app = "mercadona-project-test"
 primary_region = "cdg"
 
 [build]
