@@ -1,7 +1,7 @@
 version: '3.7'
 services:
     database:
-        image: 'mysql:latest'
+        image: 'projectmercadona:latest'
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: mercadona
