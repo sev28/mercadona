@@ -1,14 +1,16 @@
-# fly.toml app configuration file generated for mercadona-pro-empty on 2023-12-01T18:45:08+01:00
+# fly.toml app configuration file generated for mercadona-pro on 2023-12-01T22:08:17+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "mercadona-pro-empty"
+app = "mercadona-pro"
 primary_region = "cdg"
 
 [build]
 
-
+[env]
+  PHX_HOST = "mercadona-pro-empty.fly.dev"
+  PORT = "8080"
 
 [http_service]
   internal_port = 8080
@@ -22,6 +24,3 @@ primary_region = "cdg"
   cpu_kind = "shared"
   cpus = 1
   memory_mb = 1024
-
-[env]
-  HOSTNAME = "0.0.0.0"
