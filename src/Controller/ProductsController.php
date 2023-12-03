@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/products')]
 class ProductsController extends AbstractController
 {
-    #[Route('/', name: 'app_products_index')]
+    #[Route('/', name: 'app_products_index', methods: ['GET'])]
     public function index(ProductsRepository $repository, Request $request, PaginatorInterface $paginator, ProductsRepository $productsRepository): Response
     {
         $data = new SearchData();
