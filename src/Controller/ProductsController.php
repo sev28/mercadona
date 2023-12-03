@@ -37,9 +37,6 @@ class ProductsController extends AbstractController
             'products' => $productsRepository->findAll(),
             'form' => $form->createView(),
             'pagination' => $pagination
-        ]);
-        
+        ]); 
     }
-
-    
 }
