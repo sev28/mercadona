@@ -85,11 +85,7 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ],
-        "compile": [
-            "@php app/console assetic:dump --env=prod --no-debug",
-            "MyVendor\\MyClass::postDeployComposerCallback"
-          ]
+        ]
         
     },
     "conflict": {
