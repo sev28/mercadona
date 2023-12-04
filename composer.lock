@@ -7356,16 +7356,16 @@
         },
         {
             "name": "symfony/panther",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/panther.git",
-                "reference": "7294951f16d95de8a17d6a8601794a9fb88fd497"
+                "reference": "ef9a6f2393ac9679af03a93d3f508e4aa65c15b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/panther/zipball/7294951f16d95de8a17d6a8601794a9fb88fd497",
-                "reference": "7294951f16d95de8a17d6a8601794a9fb88fd497",
+                "url": "https://api.github.com/repos/symfony/panther/zipball/ef9a6f2393ac9679af03a93d3f508e4aa65c15b5",
+                "reference": "ef9a6f2393ac9679af03a93d3f508e4aa65c15b5",
                 "shasum": ""
             },
             "require": {
@@ -7373,19 +7373,19 @@
                 "ext-libxml": "*",
                 "php": ">=8.0",
                 "php-webdriver/webdriver": "^1.8.2",
-                "symfony/browser-kit": "^5.3 || ^6.0",
-                "symfony/dependency-injection": "^5.3 || ^6.0",
+                "symfony/browser-kit": "^5.3 || ^6.0 || ^7.0",
+                "symfony/dependency-injection": "^5.3 || ^6.0 || ^7.0",
                 "symfony/deprecation-contracts": "^2.4 || ^3",
-                "symfony/dom-crawler": "^5.3 || ^6.0",
-                "symfony/http-client": "^5.3 || ^6.0",
-                "symfony/http-kernel": "^5.3 || ^6.0",
-                "symfony/process": "^5.3 || ^6.0"
+                "symfony/dom-crawler": "^5.3 || ^6.0 || ^7.0",
+                "symfony/http-client": "^5.3 || ^6.0 || ^7.0",
+                "symfony/http-kernel": "^5.3 || ^6.0 || ^7.0",
+                "symfony/process": "^5.3 || ^6.0 || ^7.0"
             },
             "require-dev": {
-                "symfony/css-selector": "^5.3 || ^6.0",
-                "symfony/framework-bundle": "^5.3 || ^6.0",
-                "symfony/mime": "^5.3 || ^6.0",
-                "symfony/phpunit-bridge": "^5.3 || ^6.0"
+                "symfony/css-selector": "^5.3 || ^6.0 || ^7.0",
+                "symfony/framework-bundle": "^5.3 || ^6.0 || ^7.0",
+                "symfony/mime": "^5.3 || ^6.0 || ^7.0",
+                "symfony/phpunit-bridge": "^5.3 || ^6.0 || ^7.0"
             },
             "type": "library",
             "extra": {
@@ -7425,7 +7425,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/panther/issues",
-                "source": "https://github.com/symfony/panther/tree/v2.1.0"
+                "source": "https://github.com/symfony/panther/tree/v2.1.1"
             },
             "funding": [
                 {
@@ -7441,7 +7441,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-30T21:30:21+00:00"
+            "time": "2023-12-03T22:17:31+00:00"
         },
         {
             "name": "symfony/password-hasher",
