@@ -12,7 +12,7 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('products/card.html.twig', [
-            'controller_name' => 'HomeController',
+            'controller_name' => 'ProductsController',
         ]);
     }
 }
